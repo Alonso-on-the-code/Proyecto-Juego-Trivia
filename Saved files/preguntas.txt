@@ -1,0 +1,39 @@
+MCQ|1|¿Quien descubrio America?|Cristobal Colon:::Gustavo Petro:::Lionel Messi:::Simon Bolivar|0
+MCQ|2|¿Cuál es el planeta más grande del sistema solar?|Tierra:::Marte:::Júpiter:::Venus|2
+MCQ|2|¿Cuál es el océano más grande del mundo?|Atlántico:::Pacífico:::Indico:::Artico|1
+MCQ|2|¿En qué continente se encuentra Egipto?|Asia:::Africa:::Europa:::Oceanía|1
+MCQ|3|¿Quién pintó “La última cena??|Miguel Angel:::Leonardo da Vinci:::Picasso:::Van Gogh|1
+MCQ|2|¿Cuál es el metal más abundante en la corteza terrestre?|Hierro:::Aluminio:::Cobre:::Zinc|1
+MCQ|1|¿Qué gas respiramos para vivir?|Dióxido de carbono:::Nitrógeno:::Oxígeno:::Helio|2
+MCQ|3|¿En qué año llegó el hombre a la Luna?|1965:::1969:::1971:::1975|1
+MCQ|1|¿Cuál es la capital de Francia?|Madrid:::Roma:::París:::Berlín|2
+MCQ|2|¿Cuál es el idioma más hablado del mundo?|Inglés:::Español:::Portugues:::Mandarín|3
+MCQ|3|¿Qué científico formuló la teoría de la relatividad?|Newton:::Galileo:::Tesla:::Einstein|3
+TF|1|El sol es una estrella|true
+TF|1|La Tierra tiene dos lunas.|false
+TF|1|El agua está compuesta por hidrógeno y oxígeno.|true
+TF|2|El oro es un gas noble|false
+TF|3|La muralla china es visible desde el espacio.|false
+TF|1|Los pingüinos pueden volar|false
+TF|3|Venecia es la capital de Italia.|false
+TF|2|El Amazonas es el río más largo del mundo|true
+MCQ|1|¿Cuántos planetas hay en el sistema solar?|8:::7:::9:::10|0
+MCQ|2|¿Qué país inventó el sushi?|China:::Japón:::Tailandia:::Corea|1
+MCQ|2|¿Qué animal pone los huevos más grandes del mundo?|Gallina:::Avestruz:::Pingüino:::Aguila|1
+MCQ|3|¿Quién escribió “Cien años de soledad ??|Pablo Neruda:::Mario Vargas Llosa:::Gabriel García Márquez:::Octavio Paz|2
+MCQ|2|¿Cuál es la capital de Canadá?|Toronto:::Vancouver:::Ottawa:::Montreal|2
+MCQ|3|¿Qué país fue el primero en legalizar el matrimonio igualitario?|España:::Canadá:::Países Bajos:::Suecia|2
+MCQ|3|¿En qué año comenzó la Segunda Guerra Mundial?|1937:::1939:::1945:::1941|1
+MCQ|3|¿Qué instrumento mide los terremotos?|Termómetro:::Sismógrafo:::Barómetro:::Anemómetro|1
+TF|1|El corazón humano tiene cuatro cavidades|true
+TF|2|El polo norte se encuentra en la Antártida|false
+TF|2|Los delfines son peces.|false
+TF|3|El Monte Everest se encuentra en los Andes|false
+TF|2|Un año bisiesto tiene 364 días.|false
+TF|3|El cobre es más pesado que el plomo.|false
+TF|2|El ser humano tiene 206 huesos en su cuerpo.|true
+TF|3|La energía no se crea ni se destruye, solo se transforma.|true
+MCQ|2|¿Qué parte del cuerpo humano produce insulina?|Corazón:::Higado:::Páncreas:::Riñones|2
+TF|3|Los protones tienen carga negativa.|false
+MCQ|3|¿Quién fue el primer presidente de los Estados Unidos?|Abraham Lincoln:::Thomas Jefferson:::John Adams:::George Washington|3
+TF|3|Cristóbal Colón llegó a América en 1492.|true

@@ -28,7 +28,7 @@ public class Trivia {
 
         boolean salir = false;
         while (!salir) {
-            System.out.println("\n--- Menú principal ---");
+            System.out.println("\n--- Menu principal ---");
             System.out.println("1. Registrarse / seleccionar usuario");
             System.out.println("2. Jugar trivia");
             System.out.println("3. Administrar preguntas (agregar / listar)");
@@ -36,7 +36,7 @@ public class Trivia {
             System.out.println("5. Cargar datos");
             System.out.println("6. Salir");
             try {
-                int opcion = InputUtils.leerEntero(sc, "Elige una opción: ");
+                int opcion = InputUtils.leerEntero(sc, "Elige una opcion: ");
                 switch (opcion) {
                     case 1:
                         Usuario u = gestionarUsuarios(sc, usuarios);
@@ -47,7 +47,7 @@ public class Trivia {
                         break;
                     case 2:
                         if (usuarios.isEmpty()) {
-                            System.out.println("No hay usuarios registrados. Regístrate primero.");
+                            System.out.println("No hay usuarios registrados. Registrate primero.");
                         } else if (preguntas.isEmpty()) {
                             System.out.println("No hay preguntas cargadas. Agrega preguntas primero.");
                         } else {
@@ -70,16 +70,16 @@ public class Trivia {
                     case 6:
                         fm.saveUsers(usuarios);
                         fm.saveQuestions(preguntas);
-                        System.out.println("Guardado automático realizado. ¡Hasta luego!");
+                        System.out.println("Guardado automatico realizado. ¡Hasta luego!");
                         salir = true;
                         break;
                     default:
-                        System.out.println("Opción inválida. Intenta de nuevo.");
+                        System.out.println("Opcion invalida. Intenta de nuevo.");
                 }
             } catch (InvalidOptionException ex) {
                 System.out.println("Error: " + ex.getMessage());
             } catch (Exception ex) {
-                System.out.println("Ocurrió un error inesperado: " + ex.getMessage());
+                System.out.println("Ocurrio un error inesperado: " + ex.getMessage());
             }
         }
         sc.close();
@@ -87,7 +87,7 @@ public class Trivia {
 
     // Gestión de usuarios: crear o seleccionar
     private static Usuario gestionarUsuarios(Scanner sc, ArrayList<Usuario> usuarios) {
-        System.out.println("\n--- Gestión de usuarios ---");
+        System.out.println("\n--- Gestion de usuarios ---");
         System.out.println("1. Crear nuevo usuario");
         System.out.println("2. Seleccionar usuario existente");
         try {
@@ -107,14 +107,14 @@ public class Trivia {
                 for (int i = 0; i < usuarios.size(); i++) {
                     System.out.printf("%d. %s\n", i + 1, usuarios.get(i).getNombre());
                 }
-                int sel = InputUtils.leerEntero(sc, "Selecciona número de usuario: ");
+                int sel = InputUtils.leerEntero(sc, "Selecciona numero de usuario: ");
                 if (sel < 1 || sel > usuarios.size()) {
-                    System.out.println("Selección inválida.");
+                    System.out.println("Seleccion invalida.");
                     return null;
                 }
                 return usuarios.get(sel - 1);
             } else {
-                System.out.println("Opción inválida.");
+                System.out.println("Opcion invalida.");
                 return null;
             }
         } catch (InvalidOptionException ex) {
@@ -126,7 +126,7 @@ public class Trivia {
     // Menú para administrar preguntas
     private static void administrarPreguntas(Scanner sc, ArrayList<Question> preguntas) {
         System.out.println("\n--- Administrar preguntas ---");
-        System.out.println("1. Agregar pregunta opción múltiple");
+        System.out.println("1. Agregar pregunta opcion multiple");
         System.out.println("2. Agregar pregunta verdadero/falso");
         System.out.println("3. Listar preguntas");
         try {
@@ -134,12 +134,12 @@ public class Trivia {
             if (opt == 1) {
                 String texto = InputUtils.leerString(sc, "Enunciado: ");
                 ArrayList<String> opciones = new ArrayList<>();
-                opciones.add(InputUtils.leerString(sc, "Opción A: "));
-                opciones.add(InputUtils.leerString(sc, "Opción B: "));
-                opciones.add(InputUtils.leerString(sc, "Opción C: "));
-                opciones.add(InputUtils.leerString(sc, "Opción D: "));
-                int correcta = InputUtils.leerEntero(sc, "Número de opción correcta (1-4): ");
-                int dificultad = InputUtils.leerEntero(sc, "Dificultad (1-fácil,2-medio,3-difícil): ");
+                opciones.add(InputUtils.leerString(sc, "Opcion A: "));
+                opciones.add(InputUtils.leerString(sc, "Opcion B: "));
+                opciones.add(InputUtils.leerString(sc, "Opcion C: "));
+                opciones.add(InputUtils.leerString(sc, "Opcion D: "));
+                int correcta = InputUtils.leerEntero(sc, "Numero de opcion correcta (1-4): ");
+                int dificultad = InputUtils.leerEntero(sc, "Dificultad (1-facil,2-medio,3-dificil): ");
                 MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(texto, opciones, correcta - 1, dificultad);
                 preguntas.add(mcq);
                 System.out.println("Pregunta añadida.");
@@ -149,7 +149,7 @@ public class Trivia {
                 int dificultad = InputUtils.leerEntero(sc, "Dificultad (1-fácil,2-medio,3-difícil): ");
                 TrueFalseQuestion tfq = new TrueFalseQuestion(texto, resp, dificultad);
                 preguntas.add(tfq);
-                System.out.println("Pregunta añadido.");
+                System.out.println("Pregunta añadida.");
             } else if (opt == 3) {
                 if (preguntas.isEmpty()) {
                     System.out.println("No hay preguntas.");
@@ -160,7 +160,7 @@ public class Trivia {
                     }
                 }
             } else {
-                System.out.println("Opción inválida.");
+                System.out.println("Opcion invalida.");
             }
         } catch (InvalidOptionException ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -178,13 +178,13 @@ public class Trivia {
         try {
             int sel = InputUtils.leerEntero(sc, "Selecciona: ");
             if (sel < 1 || sel > usuarios.size()) {
-                System.out.println("Selección inválida.");
+                System.out.println("Seleccion invalida.");
                 return;
             }
             Usuario user = usuarios.get(sel - 1);
 
             // elegir dificultad
-            int dificultad = InputUtils.leerEntero(sc, "Dificultad deseada (1-fácil,2-medio,3-difícil): ");
+            int dificultad = InputUtils.leerEntero(sc, "Dificultad deseada (1-facil,2-medio,3-dificil): ");
             // crear un Quiz (agregación: contiene lista de preguntas)
             Quiz quiz = new Quiz("Quiz nivel " + dificultad);
             // filtrar preguntas por dificultad y agregarlas al quiz
@@ -198,11 +198,11 @@ public class Trivia {
                 return;
             }
 
-            // iniciar sesión de juego (asociación con usuario y composición con Score)
+            // iniciar sesion de juego (asociación con usuario y composición con Score)
             QuizSession session = new QuizSession(user, quiz, sc);
             session.start();
             System.out.println("Resultado: " + session.getScore().getCorrect() + " correctas de " + session.getScore().getTotal());
-            System.out.println("Puntuación obtenida: " + session.getScore().getPoints());
+            System.out.println("Puntuacion obtenida: " + session.getScore().getPoints());
         } catch (InvalidOptionException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
