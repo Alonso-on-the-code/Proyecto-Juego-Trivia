@@ -12,7 +12,10 @@ import java.util.ArrayList;
  * Main: menú principal y punto de entrada.
  */
 public class Trivia {
-    // Rutas de archivos para persistencia (puedes cambiar si quieres)
+   
+    
+
+// Rutas de archivos para persistencia (puedes cambiar si quieres)
     private static final String USERS_FILE = "usuarios.txt";
     private static final String QUESTIONS_FILE = "preguntas.txt";
 

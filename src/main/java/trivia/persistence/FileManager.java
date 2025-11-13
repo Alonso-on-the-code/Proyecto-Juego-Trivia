@@ -3,6 +3,7 @@ package trivia.persistence;
 import trivia.models.*;
 import java.util.ArrayList;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -22,9 +23,10 @@ public class FileManager implements Persistable {
 
     @Override
     public void saveUsers(ArrayList<Usuario> users) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(usersFile))) {
+        try (PrintWriter pw = new PrintWriter(
+                new OutputStreamWriter(new FileOutputStream(usersFile), StandardCharsets.UTF_8))) {
             for (Usuario u : users) {
-                pw.printf("%s;%d;%d\n", u.getNombre(), u.getPartidasJugadas(), u.getPuntajeTotal());
+                pw.printf("%s;%d;%d%n", u.getNombre(), u.getPartidasJugadas(), u.getPuntajeTotal());
             }
         } catch (IOException e) {
             System.out.println("Error guardando usuarios: " + e.getMessage());
@@ -36,18 +38,17 @@ public class FileManager implements Persistable {
         ArrayList<Usuario> users = new ArrayList<>();
         File f = new File(usersFile);
         if (!f.exists()) return users;
-        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(";");
                 if (parts.length >= 3) {
                     Usuario u = new Usuario(parts[0]);
-                    // intentar parsear partidas y puntaje (si hay datos)
                     try {
-                        // reflectamos los valores mediante métodos públicos
                         int partidas = Integer.parseInt(parts[1]);
                         int puntos = Integer.parseInt(parts[2]);
-                        // aplicar
                         for (int i = 0; i < partidas; i++) u.incrementarPartida();
                         u.agregarPuntaje(puntos);
                     } catch (NumberFormatException ignore) {}
@@ -62,16 +63,20 @@ public class FileManager implements Persistable {
 
     @Override
     public void saveQuestions(ArrayList<Question> questions) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(questionsFile))) {
+        try (PrintWriter pw = new PrintWriter(
+                new OutputStreamWriter(new FileOutputStream(questionsFile), StandardCharsets.UTF_8))) {
             for (Question q : questions) {
                 if (q instanceof MultipleChoiceQuestion) {
                     MultipleChoiceQuestion m = (MultipleChoiceQuestion) q;
-                    // formato: MCQ|dificultad|enunciado|opc1:::opc2:::opc3:::opc4|indiceCorrecto
                     String opciones = String.join(":::", m.getOpciones());
-                    pw.printf("MCQ|%d|%s|%s|%d\n", m.getDificultad(), escape(m.getEnunciado()), escape(opciones), m.getIndiceCorrecto());
+                    pw.printf("MCQ|%d|%s|%s|%d%n", 
+                            m.getDificultad(), escape(m.getEnunciado()), 
+                            escape(opciones), m.getIndiceCorrecto());
                 } else if (q instanceof TrueFalseQuestion) {
                     TrueFalseQuestion t = (TrueFalseQuestion) q;
-                    pw.printf("TF|%d|%s|%b\n", t.getDificultad(), escape(t.getEnunciado()), t.isCorrect("true")); // guardamos la verdad
+                    pw.printf("TF|%d|%s|%b%n", 
+                            t.getDificultad(), escape(t.getEnunciado()), 
+                            t.isCorrect("true"));
                 }
             }
         } catch (IOException e) {
@@ -84,7 +89,9 @@ public class FileManager implements Persistable {
         ArrayList<Question> questions = new ArrayList<>();
         File f = new File(questionsFile);
         if (!f.exists()) return questions;
-        try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
@@ -92,16 +99,15 @@ public class FileManager implements Persistable {
                 String tipo = parts[0];
                 int dificultad = Integer.parseInt(parts[1]);
                 String enunciado = unescape(parts[2]);
+
                 if (tipo.equals("MCQ") && parts.length >= 5) {
                     String opcionesRaw = unescape(parts[3]);
                     ArrayList<String> opciones = new ArrayList<>(Arrays.asList(opcionesRaw.split(":::")));
                     int indice = Integer.parseInt(parts[4]);
-                    MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(enunciado, opciones, indice, dificultad);
-                    questions.add(mcq);
+                    questions.add(new MultipleChoiceQuestion(enunciado, opciones, indice, dificultad));
                 } else if (tipo.equals("TF") && parts.length >= 4) {
                     boolean correct = Boolean.parseBoolean(parts[3]);
-                    TrueFalseQuestion tfq = new TrueFalseQuestion(enunciado, correct, dificultad);
-                    questions.add(tfq);
+                    questions.add(new TrueFalseQuestion(enunciado, correct, dificultad));
                 }
             }
         } catch (IOException e) {
@@ -110,7 +116,6 @@ public class FileManager implements Persistable {
         return questions;
     }
 
-    // escapado simple para '|' y saltos de linea
     private String escape(String s) {
         return s.replace("\n", "\\n").replace("|", "\\|");
     }

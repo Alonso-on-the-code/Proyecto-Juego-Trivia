@@ -21,6 +21,59 @@ public class QuizSession {
         this.score = new Score(); // composicion: Score existe solo dentro de la sesion
     }
 
+    // --- NUEVO CÓDIGO PARA LA INTERFAZ GRÁFICA ---
+private ArrayList<Question> preguntas; 
+private int indiceActual = 0;
+
+/**
+ * Inicia la sesión sin usar consola (para GUI).
+ * Carga las preguntas mezcladas desde el quiz.
+ */
+public void iniciarSinConsola() {
+    preguntas = quiz.getPreguntasMezcladas();
+    indiceActual = 0;
+    score = new Score(); // reiniciar puntaje
+}
+
+/**
+ * Devuelve la pregunta actual (null si ya no hay más).
+ */
+public Question getCurrentQuestion() {
+    if (preguntas != null && indiceActual < preguntas.size()) {
+        return preguntas.get(indiceActual);
+    }
+    return null;
+}
+
+/**
+ * Registra una respuesta (según índice) y avanza a la siguiente pregunta.
+ */
+public void responder(int opcionSeleccionada) {
+    if (preguntas == null || indiceActual >= preguntas.size()) return;
+
+    Question actual = preguntas.get(indiceActual);
+    boolean correcta = actual.isCorrect(String.valueOf(opcionSeleccionada + 1)); 
+    int puntos = 10 * actual.getDificultad();
+    score.registrarRespuesta(correcta, puntos);
+
+    indiceActual++;
+
+    // si ya terminó, actualiza las estadísticas del usuario
+    if (indiceActual >= preguntas.size()) {
+        usuario.incrementarPartida();
+        usuario.agregarPuntaje(score.getPoints());
+    }
+}
+
+/**
+ * Indica si quedan preguntas por responder.
+ */
+public boolean hayMasPreguntas() {
+    return preguntas != null && indiceActual < preguntas.size();
+}
+
+    
+    
     public void start() {
         // Obtener preguntas mezcladas
         ArrayList<Question> preguntas = quiz.getPreguntasMezcladas();
