@@ -5,7 +5,10 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.io.FileOutputStream;
 import java.util.List;
+import trivia.models.CompraExtra;
+import trivia.models.PlanPremium;
 import trivia.models.Usuario;
+import trivia.utils.ControladorPagos;
 
 public class GeneradorPDF {
     
@@ -74,4 +77,48 @@ public class GeneradorPDF {
             e.printStackTrace();
         }
     }
+    public static void generarPDFPremium(String ruta){
+    try {
+        Document doc = new Document();
+        PdfWriter.getInstance(doc, new FileOutputStream(ruta));
+        doc.open();
+
+        doc.add(new Paragraph("REPORTE DE USUARIOS PREMIUM\n\n"));
+
+        for(PlanPremium p : ControladorPagos.getPlanes()){
+            doc.add(new Paragraph(
+                "Usuario: " + p.getUsuario() +
+                " | Precio: " + p.getPrecio() +
+                " | Fecha: " + p.getFechaInicio()
+            ));
+        }
+
+        doc.add(new Paragraph("\nTotal ingresos: " + ControladorPagos.totalIngresoPremium()));
+
+        doc.close();
+    } catch(Exception e){ e.printStackTrace(); }
+}
+
+public static void generarPDFExtras(String ruta){
+    try {
+        Document doc = new Document();
+        PdfWriter.getInstance(doc, new FileOutputStream(ruta));
+        doc.open();
+
+        doc.add(new Paragraph("REPORTE DE SERVICIOS EXTRA\n\n"));
+
+        for(CompraExtra c : ControladorPagos.getCompras()){
+            doc.add(new Paragraph(
+                "Usuario: " + c.getUsuario() +
+                " | Servicio: " + c.getServicio() +
+                " | Precio: " + c.getPrecio()
+            ));
+        }
+
+        doc.add(new Paragraph("\nTotal ingresos: " + ControladorPagos.totalIngresoExtras()));
+
+        doc.close();
+    } catch(Exception e){ e.printStackTrace(); }
+}
+
 }

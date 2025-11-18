@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * FileManager: implementacion simple de persistencia en texto.
@@ -123,4 +124,63 @@ public class FileManager implements Persistable {
     private String unescape(String s) {
         return s.replace("\\n", "\n").replace("\\|", "|");
     }
+// ----------- PAGOS Y SERVICIOS ------------
+private static final String PLANES_FILE = "planes_premium.txt";
+private static final String COMPRAS_FILE = "compras_extras.txt";
+
+public static ArrayList<PlanPremium> cargarPlanes(){
+    ArrayList<PlanPremium> lista = new ArrayList<>();
+    try {
+        java.io.File f = new java.io.File(PLANES_FILE);
+        if(!f.exists()) return lista;
+
+        java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(f));
+        String linea;
+        while((linea = br.readLine()) != null){
+            if(!linea.trim().isEmpty())
+                lista.add(PlanPremium.fromCSV(linea));
+        }
+        br.close();
+    } catch(Exception e){ e.printStackTrace(); }
+    return lista;
+}
+
+public static void guardarPlanes(List<PlanPremium> lista){
+    try {
+        java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(PLANES_FILE));
+        for(PlanPremium p : lista){
+            bw.write(p.toString());
+            bw.newLine();
+        }
+        bw.close();
+    } catch(Exception e){ e.printStackTrace(); }
+}
+
+public static ArrayList<CompraExtra> cargarCompras(){
+    ArrayList<CompraExtra> lista = new ArrayList<>();
+    try {
+        java.io.File f = new java.io.File(COMPRAS_FILE);
+        if(!f.exists()) return lista;
+
+        java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(f));
+        String linea;
+        while((linea = br.readLine()) != null){
+            if(!linea.trim().isEmpty())
+                lista.add(CompraExtra.fromCSV(linea));
+        }
+        br.close();
+    } catch(Exception e){ e.printStackTrace(); }
+    return lista;
+}
+
+public static void guardarCompras(List<CompraExtra> lista){
+    try {
+        java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(COMPRAS_FILE));
+        for(CompraExtra c : lista){
+            bw.write(c.toString());
+            bw.newLine();
+        }
+        bw.close();
+    } catch(Exception e){ e.printStackTrace(); }
+}
 }
