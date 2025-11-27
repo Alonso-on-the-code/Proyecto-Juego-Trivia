@@ -37,3 +37,19 @@ MCQ|2|¿Qué parte del cuerpo humano produce insulina?|Corazón:::Higado:::Pánc
 TF|3|Los protones tienen carga negativa.|false
 MCQ|3|¿Quién fue el primer presidente de los Estados Unidos?|Abraham Lincoln:::Thomas Jefferson:::John Adams:::George Washington|3
 TF|3|Cristóbal Colón llegó a América en 1492.|true
+TF|3|El neutrón posee carga eléctrica negativa.|false
+TF|3|La fotosíntesis solo puede darse en plantas terrestres.|false
+TF|3|La entropía de un sistema cerrado siempre disminuye.|false
+TF|3|El número pi es un número racional.|false
+TF|3|La luz ultravioleta tiene menos energía que la luz infrarroja.|false
+TF|3|El oro es un buen conductor pero peor que el hierro.|false
+TF|1|La leche proviene de los mamíferos.|true
+TF|1|Los gatos no son reptiles.|false
+TF|2|La fotosíntesis ocurre en los cloroplastos.|true
+MCQ|3|¿Qué país ganó la primera Copa Mundial de Fútbol en 1930?|Brasil:::Italia:::Uruguay:::Alemania|2
+MCQ|3|¿En qué año cayó el Muro de Berlín?|1985:::1989:::1991:::1987|1
+MCQ|3|¿Qué país tiene más volcanes activos en el mundo?|Chile:::Indonesia:::Japón:::Estados Unidos|1
+MCQ|3|¿En qué año se lanzó el primer iPhone?|2005:::2007:::2009:::2004|1
+MCQ|3|¿Qué es un “kernel” en un sistema operativo?|La interfaz gráfica:::El núcleo que gestiona recursos:::Una aplicación del sistema:::Un administrador de archivos|1
+MCQ|1|¿Qué empresa desarrolló el primer microprocesador comercial de la historia (Intel 4004)?|IBM:::Intel:::AMD:::Texas Instruments|1
+MCQ|3|¿Cuál es la complejidad temporal del algoritmo de ordenamiento Quicksort en promedio?|O(n²):::O(log n):::O(n log n):::O(n)|2

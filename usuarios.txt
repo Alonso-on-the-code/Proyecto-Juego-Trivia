@@ -1,2 +1,4 @@
 Alonso;3;20
 Edgar;1;220
+jier;1;150
+Stiven;1;40

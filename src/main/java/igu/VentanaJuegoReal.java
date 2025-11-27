@@ -139,6 +139,11 @@ private void mostrarPregunta() {
 
         buttonGroup1.add(OpcionA);
         OpcionA.setText("A");
+        OpcionA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpcionAActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(OpcionB);
         OpcionB.setText("B");
@@ -240,6 +245,10 @@ private void mostrarPregunta() {
     menu.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_BotonMenuActionPerformed
+
+    private void OpcionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OpcionAActionPerformed
 
     
     public static void main(String args[]) {

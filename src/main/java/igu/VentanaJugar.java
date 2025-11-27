@@ -22,23 +22,7 @@ public class VentanaJugar extends javax.swing.JFrame {
             return;
         }
         
-        int dificultad = Integer.parseInt(
-            JOptionPane.showInputDialog(this, "Dificultad (1-facil, 2-medio, 3-dificil):"));
         
-        Quiz quiz = new Quiz("Trivia Nivel " + dificultad);
-        for (Question q : ControladorTrivia.getPreguntas()) {
-            if (q.getDificultad() == dificultad) quiz.addQuestion(q);
-        }
-        
-        if (quiz.getSize() == 0) {
-            JOptionPane.showMessageDialog(this, "No hay preguntas de esa dificultad.");
-            new TriviaIGU().setVisible(true);
-            dispose();
-            return;
-        }
-        
-        sesion = new QuizSession(usuario, quiz, null); // sin Scanner
-        mostrarPregunta();
     }
 
      private void mostrarPregunta() {
@@ -187,7 +171,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         return;
     }//GEN-LAST:event_BotonIniciarJuegoActionPerformed
 
-       int dificultad = ComboDificultad.getSelectedIndex() + 1;
+       int dificultad = ComboDificultad.getSelectedIndex()  ;
 boolean esMultiple = BotonOpcionMultiple.isSelected();
 
 Usuario usuario = ControladorTrivia.getUsuarioActivo();
