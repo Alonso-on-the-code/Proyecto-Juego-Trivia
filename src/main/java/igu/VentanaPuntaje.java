@@ -12,10 +12,10 @@ public class VentanaPuntaje extends javax.swing.JFrame {
     
     public VentanaPuntaje() {
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        actualizarUsuarioActivo();
-        cargarTablaPuntajes();
+        setLocationRelativeTo(null); //centra la ventana
+        setResizable(false); //evita que el usuario cambie el tamaño
+        actualizarUsuarioActivo(); // Muestra el usuario activo y su puntaje
+        cargarTablaPuntajes();  // Muestra el usuario activo y su puntaje
     }
 
     
@@ -112,12 +112,14 @@ public class VentanaPuntaje extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //accion del boton regresar
     private void BotonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegresarActionPerformed
        TriviaIGU inicio = new TriviaIGU();
        inicio.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_BotonRegresarActionPerformed
 
+    //Muestra Usuario activo
     private void actualizarUsuarioActivo() {
         Usuario activo = ControladorTrivia.getUsuarioActivo();
         if (activo != null) {
@@ -129,14 +131,18 @@ public class VentanaPuntaje extends javax.swing.JFrame {
         }
     }
     
-    // 👉 Carga y ordena los puntajes en la tabla
+    //  Carga y ordena los puntajes en la tabla
     private void cargarTablaPuntajes() {
         String[] columnas = {"Posición", "Usuario", "Partidas", "Puntaje Total"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
+        // Obtiene la lista de usuarios desde el controlador
         ArrayList<Usuario> listaUsuarios = new ArrayList<>(ControladorTrivia.getUsuarios());
+        
+        // Ordena los usuarios por puntaje de mayor a menor
         listaUsuarios.sort(Comparator.comparingInt(Usuario::getPuntajeTotal).reversed());
 
+        //aqui se posiciona cada usuario en la tabla
         int posicion = 1;
         for (Usuario u : listaUsuarios) {
             Object[] fila = {posicion++, u.getNombre(), u.getPartidasJugadas(), u.getPuntajeTotal()};

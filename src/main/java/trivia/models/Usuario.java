@@ -1,9 +1,13 @@
 package trivia.models;
 
-/*
-* - Ejemplo de encapsulamiento (campos privados, getters/setters).
- * - Asociacion: un Usuario puede jugar en una QuizSession. 
-*/
+/**
+ * Clase Usuario.
+ * Representa un jugador en el juego de trivia.
+ * - Mantiene información sobre el nombre del jugador y sus estadísticas de juego.
+ * - Ejemplo de encapsulamiento (campos privados, getters/setters).
+ * - Asociación: un Usuario puede jugar en una QuizSession.
+ * - Almacena estadísticas como partidas jugadas y puntaje total acumulado.
+ */
 
 public class Usuario {
     private String nombre;

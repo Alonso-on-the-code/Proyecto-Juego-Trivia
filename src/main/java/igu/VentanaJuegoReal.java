@@ -8,6 +8,7 @@ import trivia.models.QuizSession;
 import trivia.models.TrueFalseQuestion;
 import trivia.models.Usuario;
 import trivia.utils.ControladorTrivia;
+import trivia.utils.SoundPlayer;
 
 
 public class VentanaJuegoReal extends javax.swing.JFrame {
@@ -231,19 +232,43 @@ private void mostrarPregunta() {
     else if (OpcionC.isSelected()) seleccion = 2; //OPCION C
     else if (OpcionD.isSelected()) seleccion = 3; //OPCION D
 
+    // Validar que haya seleccionado algo
     if (seleccion == -1) {
         JOptionPane.showMessageDialog(this, "Selecciona una respuesta antes de continuar.");
         return;
     }
 
+    // Obtener pregunta actual
+    Question pregunta = sesion.getCurrentQuestion();
+
+    int indiceCorrecto = -1;
+    
+    // Saber de qué tipo es
+    if (pregunta instanceof MultipleChoiceQuestion mcq) {
+    indiceCorrecto = mcq.getIndiceCorrecto();
+    } else if (pregunta instanceof TrueFalseQuestion tfq) {
+    indiceCorrecto = tfq.getCorrectIndex();
+}
+    
+    // Verificar si es correcta
+    if (seleccion == indiceCorrecto) {
+    SoundPlayer.playCorrectSound();
+    JOptionPane.showMessageDialog(this, "¡Correcto!");
+    } else {
+    SoundPlayer.playIncorrectSound();
+    JOptionPane.showMessageDialog(this, "Incorrecto...");
+}
+
+    // Registrar respuesta y avanzar
     sesion.responder(seleccion);
-    mostrarPregunta(); 
+    mostrarPregunta();
+    
     }//GEN-LAST:event_BotonSiguienteActionPerformed
 
     private void BotonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenuActionPerformed
         TriviaIGU menu = new TriviaIGU();
-    menu.setVisible(true);
-    this.dispose();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BotonMenuActionPerformed
 
     private void OpcionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionAActionPerformed

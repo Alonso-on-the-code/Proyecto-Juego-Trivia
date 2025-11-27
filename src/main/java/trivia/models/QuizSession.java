@@ -7,6 +7,8 @@ import java.util.Scanner;
  * QuizSession: gestiona la ejecucion de un quiz para un usuario.
  * - Asociacion: referencia a Usuario (no lo crea).
  * - Composicion: crea internamente Score.
+  * - Controla el flujo del juego y registra las respuestas del jugador.
+ * - Mantiene el estado actual del juego (pregunta actual, índice, etc.).
  */
 public class QuizSession {
     private Usuario usuario; // asociacion -> la sesion esta ligada a un usuario

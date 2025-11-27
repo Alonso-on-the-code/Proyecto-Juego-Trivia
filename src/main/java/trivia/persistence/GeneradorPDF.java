@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 import trivia.models.CompraExtra;
 import trivia.models.PlanPremium;
@@ -17,7 +18,16 @@ public class GeneradorPDF {
     // ======================================================
     private static Image obtenerIcono() {
     try {
-        return Image.getInstance("src/com/mycompany/trivia/imagenes/icono.png");
+         InputStream is = GeneradorPDF.class.getResourceAsStream("/imagenes/icono.png");
+
+        if (is == null) {
+            System.out.println("NO SE PUDO CARGAR ICONO: recurso no encontrado");
+            return null;
+        }
+
+        byte[] bytes = is.readAllBytes();
+        return Image.getInstance(bytes);
+
     } catch (Exception e) {
         System.out.println("NO SE PUDO CARGAR ICONO: " + e);
         return null;
@@ -44,7 +54,7 @@ public class GeneradorPDF {
             PdfWriter.getInstance(doc, new FileOutputStream("reporte_puntajes.pdf"));
             doc.open();
 
-            System.out.println(GeneradorPDF.class.getResource("/com/mycompany/trivia/imagenes/icono.png"));
+            System.out.println(GeneradorPDF.class.getResource("/imagenes/icono.png"));
 
             
             // ICONO

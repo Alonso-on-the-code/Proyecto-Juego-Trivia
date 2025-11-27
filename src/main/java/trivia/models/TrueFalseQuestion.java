@@ -3,6 +3,7 @@ package trivia.models;
 /**
  * Pregunta verdadero/falso.
  * - Hereda de Question
+ - Implementa polimorfismo al sobrescribir los métodos abstractos de la clase padre.
  */
 public class TrueFalseQuestion extends Question {
     private boolean respuestaCorrecta;
@@ -32,5 +33,9 @@ public class TrueFalseQuestion extends Question {
     @Override
     public String toString() {
         return "TF: " + getEnunciado();
+    }
+    //  metodo para el sfx (da indice)
+    public int getCorrectIndex() {
+        return respuestaCorrecta ? 0 : 1;
     }
 }

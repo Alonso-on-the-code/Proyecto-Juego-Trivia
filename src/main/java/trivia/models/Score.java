@@ -3,6 +3,8 @@ package trivia.models;
 /**
  * Score: objeto que representa el resultado de una sesión.
  * - Ejemplo de composicion: Score se crea dentro de QuizSession y no tiene sentido fuera de ella.
+ - Mantiene el registro de respuestas correctas/incorrectas y el puntaje total.
+ * - Permite calcular estadísticas del desempeño del jugador.
  */
 public class Score {
     private int total;
@@ -24,6 +26,7 @@ public class Score {
         }
     }
 
+    //total preguntas
     public int getTotal() {
         return total;
     }
@@ -32,6 +35,7 @@ public class Score {
         return correct;
     }
 
+    //Da los puntos
     public int getPoints() {
         return points;
     }
